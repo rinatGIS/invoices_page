@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Invoices</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="mainPage.js"></script>        
+    </head>
+    <body>
+        <div id="mainDiv">
+            <div id="headerDiv">
+                <span>Invoices</span>
+            </div>
+            <p><div>
+                <span>Actions</span>
+                <br><button id="addInv">Add new</button>
+            </div></p>
+            <p><div id="searchFilterPanel">
+                <form name="filterForm">
+                    Search: <input type="text" name="searchWind"> 
+                    Filter by: 
+                    <select name="filterSel">
+                        <option>All</option>
+                        <option value="date_created">Create</option>
+                        <option value="number">No</option>
+                        <option value="date_supply">Supply</option>
+                        <option value="comment">Comment</option>
+                    </select>
+                    Order by: 
+                    <select name="sortSel">
+                        <option value="date_created">Create</option>
+                        <option value="number">No</option>
+                        <option value="date_supply">Supply</option>
+                        <option value="comment">Comment</option>
+                    </select>
+                    <select id=orderSel>
+                        <option>No sorting</option>
+                        <option>Asc</option>
+                        <option>Desc</option>
+                    </select>
+                    <input type="button" value="Go" id="filterInv">
+                </form>
+            </div></p>
+            <p><div id="invoicesList">
+                <span>Invoices</span>
+                <br>
+                <table id="invoicesTable">
+                    <thead>
+                        <tr>
+                            <th>Create</th>
+                            <th>No</th>
+                            <th>Supply</th>
+                            <th>Comment</th>
+                            <th colspan="2"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableData"></tbody>
+                </table>
+            </div></p>
+        </div>
+    </body>
+</html>

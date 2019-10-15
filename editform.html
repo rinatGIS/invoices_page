@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Edit Invoices</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="addEditInvoices.js"></script>        
+    </head>
+    <body>
+        <div id="mainDiv">
+            <div id="headerDiv">
+                <span>Create Invoice</span>
+            </div>            
+            <p><div id="addFormDiv">
+                <form name="addForm">
+                    Number: <input type="text" name="number"><br>
+                    Invoice date: <input type="date" name="invdate"> <br>
+                    Supply date: <input type="date" name="supplydate"><br>
+                    Comment: <textarea name="comment" cols="100" rows="5"></textarea><br>
+                    <input type="button" name="submit" value="Save" id="saveInv">
+                </form>
+            </div></p>
+        </div>
+    </body>
+</html>
