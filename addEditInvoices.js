@@ -6,7 +6,7 @@ window.onload = function(){
         async function getEditData(){
             let invEditData = await fetch("https://invoices-proj.herokuapp.com/invoices/"+idObj);
             let data = await invEditData.json();
-            form.number.value = data.number;
+            form.number.value = Number(data.number);
             form.invdate.value = data.date_created;
             form.supplydate.value = data.date_supply;
             form.comment.value = data.comment;
@@ -15,7 +15,7 @@ window.onload = function(){
         async function updateInv(){
             let editInv = {
                 "id": idObj,
-                "number": form.number.value,
+                "number": Number(form.number.value),
                 "date_created": form.invdate.value,
                 "date_supply": form.supplydate.value,
                 "comment": form.comment.value
@@ -33,7 +33,7 @@ window.onload = function(){
         form.submit.addEventListener("click", addNewInv);
         async function addNewInv(){  
             let newInv = {        
-                "number": form.number.value,
+                "number": Number(form.number.value),
                 "date_created": form.invdate.value,
                 "date_supply": form.supplydate.value,
                 "comment": form.comment.value
