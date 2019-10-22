@@ -1,0 +1,234 @@
+{
+	"info": {
+		"_postman_id": "4b311203-5391-4a73-96d4-87457aafa18d",
+		"name": "Collection_1_Invoices CRUD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get invoices",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bbbb3ba4-cf26-4a57-8bda-ec8ab25ead38",
+						"exec": [
+							"pm.test(\"response is ok\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Count invoices is correct\", function () {",
+							"    let invoicesData = pm.response.json();",
+							"    pm.expect(invoicesData.length).to. eql(10);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://invoices-proj.herokuapp.com/invoices",
+					"protocol": "https",
+					"host": [
+						"invoices-proj",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"invoices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create invoice",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e81a901f-fb68-44b8-9ba5-79840b1a147e",
+						"exec": [
+							"pm.test(\"response is ok\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"new invoice created\", function () {",
+							"    pm.response.to.have.jsonBody('id', '12345test')",
+							"        .and.have.jsonBody('number', '20192019')",
+							"        .and.have.jsonBody('date_created', '2019-01-01')",
+							"        .and.have.jsonBody('date_supply', '2019-02-02')",
+							"        .and.have.jsonBody('comment', 'create new invoice test');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "12345test",
+							"type": "text"
+						},
+						{
+							"key": "number",
+							"value": "20192019",
+							"type": "text"
+						},
+						{
+							"key": "date_created",
+							"value": "2019-01-01",
+							"type": "text"
+						},
+						{
+							"key": "comment",
+							"value": "create new invoice test",
+							"type": "text"
+						},
+						{
+							"key": "date_supply",
+							"value": "2019-02-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://invoices-proj.herokuapp.com/invoices",
+					"protocol": "https",
+					"host": [
+						"invoices-proj",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"invoices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit invoice",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e81ec31b-f612-4ef9-9c3f-8bbe95124f0e",
+						"exec": [
+							"pm.test(\"response is ok\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"success update invoice\", function () {",
+							"    pm.response.to.have.jsonBody('id', '12345test')",
+							"        .and.have.jsonBody('number', '20202020')",
+							"        .and.have.jsonBody('comment', 'Update invoice test');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "number",
+							"value": "20202020",
+							"type": "text"
+						},
+						{
+							"key": "comment",
+							"value": "Update invoice test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://invoices-proj.herokuapp.com/invoices/12345test",
+					"protocol": "https",
+					"host": [
+						"invoices-proj",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"invoices",
+						"12345test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete invoice",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "32502139-91a3-4e9b-aab0-1f943a8b175b",
+						"exec": [
+							"pm.test(\"response is ok\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"invoice deleted\", function () {",
+							"    pm.response.to.have.jsonBody({});",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://invoices-proj.herokuapp.com/invoices/12345test",
+					"protocol": "https",
+					"host": [
+						"invoices-proj",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"invoices",
+						"12345test"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

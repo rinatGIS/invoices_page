@@ -1,0 +1,61 @@
+{
+	"info": {
+		"_postman_id": "8cbb0190-5e77-42c4-8197-718248987fd0",
+		"name": "Collection_2_Get filter invoices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get filter invoices test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3533bf2d-24f7-49ba-98c7-ffc11b50f472",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Get correct invoice\", function(){",
+							"   var jsonData = pm.response.json();",
+							"   var field = pm.environment.get(\"field\");",
+							"   var value = pm.environment.get(\"value\");",
+							"   if(field==\"number\"){",
+							"        pm.expect(jsonData[0][field]).to.eql(Number(value));",
+							"   }else{",
+							"       pm.expect(jsonData[0][field]).to.eql(value);",
+							"   }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://invoices-proj.herokuapp.com/invoices?{{field}}={{value}}",
+					"protocol": "https",
+					"host": [
+						"invoices-proj",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"invoices"
+					],
+					"query": [
+						{
+							"key": "{{field}}",
+							"value": "{{value}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
